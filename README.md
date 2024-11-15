@@ -22,9 +22,10 @@ To successfully set up and run this pipeline, you will need the following:
 7. **AWS ECR**: Used for the storage of images of the application made by the docker. 
 
 ## Repository structure
+```
 .
 ├── Jenkinsfile              # Defines the pipeline stages and steps
 ├── README.md                # This README file
 ├── scripts/                 # Any additional scripts for setup, configuration, or deployment
 └── docs/                    # Detailed documentation 
-
+```
