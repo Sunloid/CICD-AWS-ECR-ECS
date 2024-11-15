@@ -2,7 +2,7 @@
 This repository provides a comprehensive guide to setting up a CI/CD pipeline with Jenkins, Maven, SonarQube, Nexus and AWS. The pipeline is designed to automate the build, test and deployment processes for projects, ensuring streamline workflows and consistent high-quality code releases 
 
 ## Overview 
-This CI/CD pipeline configuration leverages popular DevOps tools to automate the complete software delivery lifecycle. Jenkins as the orchestrator, managing the flow through each stage of the pipeline. The setup includes continuous integration with Maven for build management, SonarQube for static code analysis, Nexus for artifact repository management and AWS for scalabled deployment. 
+This CI/CD pipeline configuration leverages popular DevOps tools to automate the complete software delivery lifecycle. Jenkins as the orchestrator, managing the flow through each stage of the pipeline. The setup includes continuous integration with Maven for build management, SonarQube for static code analysis, Nexus for artifact repository management and AWS for scalabled deployment. The source file of the java application is in the repository "https://github.com/Sunloid/CICD_Java_Source". This repository is just the documentation of the setup and the working of the pipeline. 
 
 ## Pipeline Workflow 
 1. **Build**: Jenkins initiates the build process, using Maven to compile the code to handle project dependencies. 
@@ -24,8 +24,15 @@ To successfully set up and run this pipeline, you will need the following:
 ## Repository structure
 ```
 .
-├── Jenkinsfile              # Defines the pipeline stages and steps
-├── README.md                # This README file
-├── scripts/                 # Any additional scripts for setup, configuration, or deployment
-└── docs/                    # Detailed documentation 
+├── Jenkinsfile                         # Defines the pipeline stages and steps
+├── README.md                           # This README file
+├── scripts/                            # Scripts for setup, configuration, or deployment
+│   ├── install_Jenkins.sh              # Script for building the Jenkins application on ubuntu
+│   ├── install_Nexus.sh                # Script for building the Nexus application on ubuntu
+│   └── install_SonarQube.sh            # Script for building the SonarQube application on ubuntu
+└── docs/                               # Detailed Documentation of the 
+    ├── GroovySyntax.md                 # Explains the Groovy Syntax in the Jenkins file
+    ├── Infrastructure.md               # Explains the Infrastructure of the pipeline
+    └── PipelineSetup.md                # The setup of the complete pipeline is documented here
+
 ```
