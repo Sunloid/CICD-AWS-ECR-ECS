@@ -13,10 +13,18 @@ This CI/CD pipeline configuration leverages popular DevOps tools to automate the
 ## Prerequisites 
 To successfully set up and run this pipeline, you will need the following:
 
-1. AWS CLI: Configured on the Jenkins instance for integration with AWS services.
-2. Docker: Required for Jenkins container builds and deployments.
-3. Jenkins: Orchestrates the pipeline.
-4. SonarQube: Code Quality analysis.
-5. Nexus: Artifact storage management.
-6. AWS ECS: Used to deploy the and run the applications in a scalable, managed environment. 
-7. AWS ECR: Used for the storage of images of the application made by the docker. 
+1. **AWS CLI**: Configured on the Jenkins instance for integration with AWS services.
+2. **Docker**: Required for Jenkins container builds and deployments.
+3. **Jenkins**: Orchestrates the pipeline.
+4. **SonarQube**: Code Quality analysis.
+5. **Nexus**: Artifact storage management.
+6. **AWS ECS**: Used to deploy the and run the applications in a scalable, managed environment. 
+7. **AWS ECR**: Used for the storage of images of the application made by the docker. 
+
+## Repository structure
+.
+├── Jenkinsfile              # Defines the pipeline stages and steps
+├── README.md                # This README file
+├── scripts/                 # Any additional scripts for setup, configuration, or deployment
+└── docs/                    # Detailed documentation 
+
