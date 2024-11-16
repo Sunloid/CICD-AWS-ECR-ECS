@@ -24,7 +24,7 @@ Give it custom tcp in the port 8081
 Create a ECR repository with the name of cicd-repo and the copy the URL of the repository and use it in the Jenkinsfile. 
 
 ### ECS cluster and Task definitions
-Create a ECS service with the name of cicd-cluster1 and a task definition with the name of cicd-service1. if possible create this right before the execution of the service since this is the most costly service here. 
+Create a ECS service with the name of cicd-cluster1 and a task definition with the name of cicd-service1. if possible create this right before the execution of the pipeline since this is the most costly service here. 
 
 ### EC2 instances 
 Create 3 EC2 linux ubuntu instances with the names of Jenkins, Nexus and SonarQube. Use t2.medium on all of them and the security groups accordingly. Use the .sh files in the scripts to setups the servers. 
