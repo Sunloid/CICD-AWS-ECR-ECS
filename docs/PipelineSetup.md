@@ -29,3 +29,16 @@ Create a ECR repository with the name of cicd-repo and the copy the URL of the r
 ### ECS cluster and Task definitions
 Create a ECS service with the name of cicd-cluster1 and a task definition with the name of cicd-service1. if possible create this right before the execution of the service since this is the most costly service here. 
 
+### EC2 instances 
+Create 3 EC2 linux ubuntu instances with the names of Jenkins, Nexus and SonarQube. Use t2.medium on all of them and the security groups accordingly. Use the .sh files in the scripts to setups the servers. 
+
+## Nexus Instance 
+Login to nexus and create a new repository with the option of maven2 hosted. Make sure the name of the repository is First-repo and make the sure to remember the username and password you setup of the nexus account. 
+
+## SonarQube Instance
+
+## Jenkins Instance 
+If you use the install_jenkins.sh file then the jenkins will already be installed on the instance but there are more installations need to be done. First install docker and aws cli 
+Configure AWS CLI with the command 
+``` aws configure ``` 
+Enter the access key, secret access key, and the region of the IAM user. Make sure the IAM user has the right permissions for this. Just to be sure for now give him the admin previleges. 
