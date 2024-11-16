@@ -11,8 +11,8 @@ This file contains step by step all instructions on how to setup up this pipelin
 - AWS ECR: Elastic Container Registry is used to store the images made by the docker. 
 - AWS ECS: ECS is used to deploy the images made
 
-## AWS setup: 
-### Security Groups: 
+## AWS setup
+### Security Groups
 - Jenkins: 
     ![Alt text](<q2.png>)
 
@@ -23,5 +23,9 @@ This file contains step by step all instructions on how to setup up this pipelin
     ![Alt text](<image (25).png>)
 
 
-### ECS: 
-Create a ECS service with the name of 
+### ECR repository
+Create a ECR repository with the name of cicd-repo and the copy the URL of the repository and use it in the Jenkinsfile. 
+
+### ECS cluster and Task definitions
+Create a ECS service with the name of cicd-cluster1 and a task definition with the name of cicd-service1. if possible create this right before the execution of the service since this is the most costly service here. 
+

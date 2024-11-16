@@ -119,7 +119,7 @@ pipeline {
             steps {
 		        script {
 		            def ecsCluster = "cicd-cluster1"
-		            def appServiceName = "cicd-service2" 
+		            def appServiceName = "cicd-service1" 
 		            sh "aws ecs update-service --cluster ${ecsCluster} --region ap-south-1 --service ${appServiceName}  --force-new-deployment"
 		    }
 		 }
