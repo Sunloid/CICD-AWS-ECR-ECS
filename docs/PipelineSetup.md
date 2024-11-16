@@ -33,12 +33,21 @@ Create a ECS service with the name of cicd-cluster1 and a task definition with t
 Create 3 EC2 linux ubuntu instances with the names of Jenkins, Nexus and SonarQube. Use t2.medium on all of them and the security groups accordingly. Use the .sh files in the scripts to setups the servers. 
 
 ## Nexus Instance 
-Login to nexus and create a new repository with the option of maven2 hosted. Make sure the name of the repository is First-repo and make the sure to remember the username and password you setup of the nexus account. 
+Login to nexus and create a new repository with the option of maven2 hosted. Make sure the name of the repository is First-repo and make the sure to remember the username and password you setup of the nexus account. Use that username and password in the jenkins server and make a new credentials with the name of nexuslogin. Besure to use the name nexuslogin word to word. 
 
 ## SonarQube Instance
+Login to SonarQube with the username= admin, password = admin. Make a new Quality Gate with the condition of your choice. Go to account and then security and make a new webhook copy the secret text and use it to make a new credentials in the Jenkins server. 
 
 ## Jenkins Instance 
 If you use the install_jenkins.sh file then the jenkins will already be installed on the instance but there are more installations need to be done. First install docker and aws cli 
 Configure AWS CLI with the command 
-``` aws configure ``` 
+```
+aws configure 
+``` 
 Enter the access key, secret access key, and the region of the IAM user. Make sure the IAM user has the right permissions for this. Just to be sure for now give him the admin previleges. 
+Give jenkins the permission to create images using docker. Use these commands for that.
+``` 
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+```
+
