@@ -16,3 +16,17 @@ The code sh 'mvn clean install -DskipTests' does the following:
     - clean: Deletes the target directory (build artifacts).
     - install: Compiles the code, packages it (e.g., into a JAR or WAR), and installs it into the local Maven repository.
 3. -DskipTests: Skips the execution of tests during the build process.
+
+## 3.  Stage('Checkstyle Analysis')
+**sh 'mvn checkstyle:checkstyle'**:
+
+This stage is used to enforce the coding standards and improve code quality. 
+The command sh 'mvn checkstyle:checkstyle' in a Jenkins pipeline does the following:
+1. sh: Executes the command in a shell.
+2. mvn checkstyle:checkstyle:
+    - Runs the Checkstyle plugin.
+    - The plugin analyzes the source code to ensure it adheres to coding standards (e.g., naming conventions, formatting).
+    - Generates a report (target/site/checkstyle.html) with details of any violations.
+
+## 4.  Stage('Sonar Analysis')
+- 
