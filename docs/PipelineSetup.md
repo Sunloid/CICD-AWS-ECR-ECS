@@ -50,4 +50,19 @@ Give jenkins the permission to create images using docker. Use these commands fo
 sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
 ```
+Go to jenkins application and install the following plugins. 
+- Nexus artifact uploader,
+- Sonarqube scanner,
+- Pipeline maven Integration,
+- pipeline utility step 
+- Build Timestamp
+- pipeline stage view 
+- Docker Pipeline
+- Docker Commons
+- AWS Credentials
+- Pipeline: AWS Steps
 
+Now go to jenkins manage and then tools and configure the maven, jdk, sonarqube and docker. 
+In jenkins manage go to environment and select environment variables and enter the sonarqube private ip address and the port. Use the sonarqube credentials made with the secret text. 
+
+Create a new pipeline style job and copy the Jenkins file from this repo and paste it there and the press build. 
