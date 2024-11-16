@@ -1,7 +1,18 @@
 # Groovy Syntax 
 Stage by stage explanation of the Jenkinsfile in this repo. 
 
-## Stage('Fetch code'): 
+## 1. Stage('Fetch code'): 
 **git branch: 'main', url:'https://github.com/Sunloid/CICD_Java_Source'**: 
+
 This stage is responsible for fetching the code from the GitHub repository. The GitHub repository where the main java application is stored in mentioned up there. 
           
+## 2. Stage('Build')
+**sh 'mvn clean install -DskipTests'**: 
+
+This stage is reponsible for compiling the code in the a .war file and storing it in the target repository. 
+The code sh 'mvn clean install -DskipTests' does the following:
+1. sh: Executes the command in a shell.
+2. mvn clean install:
+    - clean: Deletes the target directory (build artifacts).
+    - install: Compiles the code, packages it (e.g., into a JAR or WAR), and installs it into the local Maven repository.
+3. -DskipTests: Skips the execution of tests during the build process.
