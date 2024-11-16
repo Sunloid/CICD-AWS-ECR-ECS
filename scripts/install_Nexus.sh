@@ -49,3 +49,4 @@ WantedBy=multi-user.target
 #Enable and start the nexaus servie 
 sudo systemctl enable nexus
 sudo systemctl start nexus
+
