@@ -14,14 +14,11 @@ This file contains step by step all instructions on how to setup up this pipelin
 ## AWS setup
 ### Security Groups
 - Jenkins: 
-    ![Alt text](<q2.png>)
-
+Give it all traffic 
 - SonarQube: 
-    ![Alt text](<image (23).png>)
-
+Give it custom tcp in the port 9000
 - Nexus: 
-    ![Alt text](<image (25).png>)
-
+Give it custom tcp in the port 8081
 
 ### ECR repository
 Create a ECR repository with the name of cicd-repo and the copy the URL of the repository and use it in the Jenkinsfile. 
