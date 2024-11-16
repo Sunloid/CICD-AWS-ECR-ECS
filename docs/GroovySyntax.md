@@ -63,33 +63,57 @@ Responsible for configuring and uploading a artifact to the Nexus repository
 This stage authenticates the docker with the AWS ECR. It creates a docker images as specified in the repo. It then stores the created docker images in the ECR. 
 
 - **aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 533267397460.dkr.ecr.ap-south-1.amazonaws.com**:
+
 Step 1: Authenticate Docker with Amazon ECR in the us-east-1 region
 
 - **docker build -t app:${BUILD_NUMBER} ./app_dockerfile/.**:
+
 Step 2: Build the Docker image for the 'app' service with the specified build number
 
 - **docker build -t web:${BUILD_NUMBER} ./web_dockerfile/.**:
+
 Step 3: Build the Docker image for the 'web' service with the specified build number
 
 - **docker build -t db:${BUILD_NUMBER}  ./db_dockerfile/.**:
+
 Step 4: Build the Docker image for the 'db' service with the specified build number
 
 - **docker tag app:${BUILD_NUMBER} 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:app${BUILD_NUMBER}**:
+
 Step 5: Tag the 'app' Docker image with the ECR repository and build number
 
 - **docker tag web:${BUILD_NUMBER} 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:web${BUILD_NUMBER}**:
+
 Step 6: Tag the 'web' Docker image with the ECR repository and build number
 
 - **docker tag db:${BUILD_NUMBER} 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:db${BUILD_NUMBER}**:
+
 Step 7: Tag the 'db' Docker image with the ECR repository and build number
 
 - **docker push 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:app${BUILD_NUMBER}**: 
+
 Step 8: Push the app image
 
 - **docker push 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:web${BUILD_NUMBER}**:
+
 Step 9: Push the web image 
 
 - **docker push 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:db${BUILD_NUMBER}**:
+
 Step 10: Push the Db image 
 
+
 ## 9. Stage("Deploy to EC2")
+Final Stage this is reponsible for deploying the images built in the previous stages in the ECS 
+
+- **def ecsCluster = "cicd-cluster1"**: 
+
+Defines the names of the ECS cluster is which is pre-built in the AWS and stores it in a variable
+
+- **def appServiceName = "cicd-service2"**:
+
+Defines the name of the ECS service in the cluster which is also pre-built and stores that name in a variable. 
+
+- **sh "aws ecs update-service --cluster ${ecsCluster} --region ap-south-1 --service ${appServiceName}  --force-new-deployment"**:
+
+Deploys the images as the final command 
