@@ -1,4 +1,4 @@
-// Visit hte GroovySyntax.md for the explanation of this pipeline
+// Visit the GroovySyntax.md for the explanation of this pipeline
 pipeline {
     agent any
     environment {
