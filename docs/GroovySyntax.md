@@ -62,45 +62,35 @@ Responsible for configuring and uploading a artifact to the Nexus repository
 ## 8. Stage('Build image and deploy it to ecr') 
 This stage authenticates the docker with the AWS ECR. It creates a docker images as specified in the repo. It then stores the created docker images in the ECR. 
 
-Step 1: Authenticate Docker with Amazon ECR in the us-east-1 region
+Step 1: Authenticate Docker with Amazon ECR in the us-east-1 region:
+- **aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 533267397460.dkr.ecr.ap-south-1.amazonaws.com**
 
-- **aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 533267397460.dkr.ecr.ap-south-1.amazonaws.com**:
+Step 2: Build the Docker image for the 'app' service with the specified build number:
+- **docker build -t app:${BUILD_NUMBER} ./app_dockerfile/.**
 
-Step 2: Build the Docker image for the 'app' service with the specified build number
+Step 3: Build the Docker image for the 'web' service with the specified build number:
+- **docker build -t web:${BUILD_NUMBER} ./web_dockerfile/.**
 
-- **docker build -t app:${BUILD_NUMBER} ./app_dockerfile/.**:
+Step 4: Build the Docker image for the 'db' service with the specified build number:
+- **docker build -t db:${BUILD_NUMBER}  ./db_dockerfile/.**
 
-Step 3: Build the Docker image for the 'web' service with the specified build number
+Step 5: Tag the 'app' Docker image with the ECR repository and build number:
+- **docker tag app:${BUILD_NUMBER} 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:app${BUILD_NUMBER}**
 
-- **docker build -t web:${BUILD_NUMBER} ./web_dockerfile/.**:
+Step 6: Tag the 'web' Docker image with the ECR repository and build number:
+- **docker tag web:${BUILD_NUMBER} 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:web${BUILD_NUMBER}**
 
-Step 4: Build the Docker image for the 'db' service with the specified build number
+Step 7: Tag the 'db' Docker image with the ECR repository and build number:
+- **docker tag db:${BUILD_NUMBER} 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:db${BUILD_NUMBER}**
 
-- **docker build -t db:${BUILD_NUMBER}  ./db_dockerfile/.**:
+Step 8: Push the app image:
+- **docker push 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:app${BUILD_NUMBER}** 
 
-Step 5: Tag the 'app' Docker image with the ECR repository and build number
+Step 9: Push the web image:
+- **docker push 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:web${BUILD_NUMBER}**
 
-- **docker tag app:${BUILD_NUMBER} 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:app${BUILD_NUMBER}**:
-
-Step 6: Tag the 'web' Docker image with the ECR repository and build number
-
-- **docker tag web:${BUILD_NUMBER} 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:web${BUILD_NUMBER}**:
-
-Step 7: Tag the 'db' Docker image with the ECR repository and build number
-
-- **docker tag db:${BUILD_NUMBER} 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:db${BUILD_NUMBER}**:
-
-Step 8: Push the app image
-
-- **docker push 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:app${BUILD_NUMBER}**: 
-
-Step 9: Push the web image 
-
-- **docker push 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:web${BUILD_NUMBER}**:
-
-Step 10: Push the Db image 
-
-- **docker push 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:db${BUILD_NUMBER}**:
+Step 10: Push the Db image: 
+- **docker push 533267397460.dkr.ecr.ap-south-1.amazonaws.com/cicd-repo:db${BUILD_NUMBER}**
 
 
 ## 9. Stage("Deploy to EC2")
