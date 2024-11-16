@@ -29,4 +29,13 @@ The command sh 'mvn checkstyle:checkstyle' in a Jenkins pipeline does the follow
     - Generates a report (target/site/checkstyle.html) with details of any violations.
 
 ## 4.  Stage('Sonar Analysis')
-- 
+This stage is used to send the .war file to the SonarQube for code quality analysis. 
+
+- **scannerHome = tool 'sonar4.7'**:
+This defines the name of the SonarQube scanner in the tools section of the Jenkins server. 
+
+- **withSonarQubeEnv('sonar') { ..... }**: 
+This gives the  configuration of the SonarQube server. For example the project name, the directory of the .war file etc 
+
+
+
