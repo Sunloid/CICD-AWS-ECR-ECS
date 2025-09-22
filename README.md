@@ -1,4 +1,4 @@
-# CI/CD Pipeline with Jenkins, Maven, SonarQube, Nexus, and AWS
+# CI/CD Pipeline AWS CLI, ECR, ECS orchestrated by Jenkins
 This repository provides a comprehensive guide to setting up a CI/CD pipeline with Jenkins, Maven, SonarQube, Nexus and AWS. The pipeline is designed to automate the build, test and deployment processes for projects, ensuring streamline workflows and consistent high-quality code releases 
 
 ## Overview 
